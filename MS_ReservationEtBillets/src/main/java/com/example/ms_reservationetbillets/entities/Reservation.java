@@ -22,6 +22,7 @@ public class Reservation implements Serializable {
     private LocalDate reservationDate; // Date de la réservation
     private Integer numberOfTickets; // Nombre de billets réservés
     private Boolean isPaid; // Indique si la réservation est payée
-    @OneToMany(mappedBy = "reservation", cascade = CascadeType.ALL)
-    private List<Billet> billets; // Liste des billets réservés pour cette réservation
-}
+    private Double price; // Prix du billet
+    private LocalDate eventDate; // Date de l'événement du billet
+    private Boolean isAvailable; // Indique si le billet est disponible
+ }

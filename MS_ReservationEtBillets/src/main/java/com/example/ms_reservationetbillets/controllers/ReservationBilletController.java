@@ -1,6 +1,5 @@
 package com.example.ms_reservationetbillets.controllers;
 
-import com.example.ms_reservationetbillets.entities.Billet;
 import com.example.ms_reservationetbillets.services.IReservationBilletService;
 import com.example.ms_reservationetbillets.entities.Reservation;
 import lombok.RequiredArgsConstructor;
@@ -35,26 +34,5 @@ public class ReservationBilletController {
     @DeleteMapping("/delete-reservation/{idReservation}")
     void deleteReservation(@PathVariable("idReservation") Integer idReservation) {
         iReservationBilletService.removeReservation(idReservation);
-    }
-
-    @GetMapping("/get-all-billets")
-    List<Billet> getAllBillets() {
-        return iReservationBilletService.retrieveAllBillets();
-    }
-    @GetMapping("/get-billet/{idBillet}")
-    Billet getBillet(@PathVariable("idBillet") Integer idBillet) {
-        return iReservationBilletService.retrieveBillet(idBillet);
-    }
-    @PostMapping("/add-billet")
-    Billet addBillet(@RequestBody Billet billet) {
-        return iReservationBilletService.addBillet(billet);
-    }
-    @PutMapping("/update-billet")
-    Billet updateBillet(@RequestBody Billet billet) {
-        return iReservationBilletService.updateBillet(billet);
-    }
-    @DeleteMapping("/delete-billet/{idBillet}")
-    void deleteBillet(@PathVariable("idBillet") Integer idBillet) {
-        iReservationBilletService.removeBillet(idBillet);
     }
 }

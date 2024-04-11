@@ -1,9 +1,6 @@
 package com.example.ms_reservationetbillets.entities;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -25,4 +22,8 @@ public class Billet implements Serializable {
     private LocalDate eventDate; // Date de l'événement du billet
     private Boolean isAvailable; // Indique si le billet est disponible
     private Integer quantiteDisponible; // La quantité de billets disponibles
+    @ManyToOne
+    @JoinColumn(name = "reservation_id")
+    private Reservation reservation; // La réservation à laquelle ce billet est associé
+
 }

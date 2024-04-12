@@ -20,13 +20,14 @@ import java.time.LocalDateTime;
 public class Event implements Serializable {
     @Id
             @GeneratedValue(strategy = GenerationType.IDENTITY)
-        private Long id;
-        private String name;
-        private String description;
-        private LocalDateTime dateTime;
-        private String location;
-        private Integer nbbillet ;
-        private String image ; }
+    private Long id;
+    private Long price;
+    private String name;
+    private String description;
+    private LocalDateTime dateTime;
+    private String location;
+    private Integer nbbillet ;
+    private String image ; }
 
 
 

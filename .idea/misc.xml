@@ -3,9 +3,9 @@
   <component name="MavenProjectsManager">
     <option name="originalFiles">
       <list>
-        <option value="$PROJECT_DIR$/PaymentService/pom.xml" />
         <option value="$PROJECT_DIR$/Eureka/pom.xml" />
         <option value="$PROJECT_DIR$/API_Gateway_Server/pom.xml" />
+        <option value="$PROJECT_DIR$/PaymentMService/pom.xml" />
       </list>
     </option>
   </component>

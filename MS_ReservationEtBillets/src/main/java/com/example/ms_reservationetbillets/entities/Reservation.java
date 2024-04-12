@@ -22,6 +22,8 @@ public class Reservation implements Serializable {
     private LocalDate reservationDate; // Date de la réservation
     private Integer numberOfTickets; // Nombre de billets réservés
     private Boolean isPaid; // Indique si la réservation est payée
+    private String email;
+    private Integer idEvent;
     private Double price; // Prix du billet
     private LocalDate eventDate; // Date de l'événement du billet
     private Boolean isAvailable; // Indique si le billet est disponible

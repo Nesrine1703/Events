@@ -1,5 +1,7 @@
-package entities;
+package micro.example.organisation.entities;
+
 import java.io.Serializable;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -9,16 +11,16 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
-@entity
+@Entity
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
 
-public class salle implements Serializable  {
+public class Salle implements Serializable {
     @Id
-    @GeneratedValue(strategy= GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer idSalle;
-    private Integer Salle;
+    private String nomSalle;
 
 }

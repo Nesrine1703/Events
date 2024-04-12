@@ -21,6 +21,7 @@ public class Commentaire implements Serializable {
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     private Integer idCommentaire;
+    private Integer idEvent;
     private String commentaire;
     private LocalDate datePublicationCommentaire;
     private LocalDate dateModificationCommentaire;

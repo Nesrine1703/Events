@@ -4,8 +4,7 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/API_Gateway_Server/API_Gateway_Server.iml" filepath="$PROJECT_DIR$/API_Gateway_Server/API_Gateway_Server.iml" />
       <module fileurl="file://$PROJECT_DIR$/Eureka/Eureka.iml" filepath="$PROJECT_DIR$/Eureka/Eureka.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/Events.iml" filepath="$PROJECT_DIR$/.idea/Events.iml" />
-      <module fileurl="file://$PROJECT_DIR$/Ms_PromoCode/Ms_PromoCode.iml" filepath="$PROJECT_DIR$/Ms_PromoCode/Ms_PromoCode.iml" />
+      <module fileurl="file://$PROJECT_DIR$/promoCode/promoCode.iml" filepath="$PROJECT_DIR$/promoCode/promoCode.iml" />
     </modules>
   </component>
 </project>

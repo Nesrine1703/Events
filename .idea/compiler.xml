@@ -8,14 +8,15 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="Eureka" />
+        <module name="promoCode" />
         <module name="API_Gateway_Server" />
-        <module name="Ms_PromoCode" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="API_Gateway_Server" target="17" />
       <module name="Eureka" target="17" />
       <module name="Ms_PromoCode" target="17" />
+      <module name="promoCode" target="17" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
@@ -23,6 +24,7 @@
       <module name="API_Gateway_Server" options="-parameters" />
       <module name="Eureka" options="-parameters" />
       <module name="Ms_PromoCode" options="-parameters" />
+      <module name="promoCode" options="-parameters" />
     </option>
   </component>
 </project>

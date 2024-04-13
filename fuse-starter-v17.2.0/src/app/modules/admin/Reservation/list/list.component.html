@@ -1,0 +1,145 @@
+<div class="absolute inset-0 flex flex-col min-w-0 overflow-hidden">
+
+    <mat-drawer-container
+        class="flex-auto h-full bg-card dark:bg-transparent"
+        (backdropClick)="onBackdropClicked()">
+
+        <!-- Drawer -->
+        <mat-drawer
+            class="w-full md:w-200 dark:bg-gray-800"
+            [mode]="drawerMode"
+            [opened]="false"
+            [position]="'end'"
+            [disableClose]="false"
+            #matDrawer>
+            <router-outlet></router-outlet>
+        </mat-drawer>
+
+        <mat-drawer-content class="flex flex-col bg-gray-100 dark:bg-transparent">
+
+            <!-- Main -->
+            <div class="flex flex-col flex-auto">
+
+                <!-- Header -->
+                <div class="flex flex-col sm:flex-row items-start sm:items-center sm:justify-between p-6 sm:py-12 md:px-8 border-b bg-card dark:bg-transparent">
+                    <!-- Title -->
+                    <div>
+                        <div class="text-4xl font-extrabold tracking-tight leading-none">Evenements</div>
+
+                    </div>
+                    <!-- Actions -->
+                    <div class="mt-4 sm:mt-0">
+                        <!-- Upload button -->
+                        <button
+                            mat-flat-button
+                            [color]="'primary'">
+                            <mat-icon [svgIcon]="'heroicons_outline:plus'"></mat-icon>
+                            <span class="ml-2 mr-1">Ajouter</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Items list -->
+                    <div class="p-6 md:p-8 space-y-8">
+                        <!-- Folders -->
+
+                                
+                                <div class="font-medium">Folders</div>
+                            <div class="flex flex-wrap items-start w-full max-w-400 -m-2"
+                            >
+                            <ng-container *ngIf="events$ | async as events; else loading">
+                                <ng-container *ngIf="events && events.length > 0; else noEvents">
+                                  <ng-container *ngFor="let file of events">
+                                    <a
+                                    class="flex flex-col m-2 p-4 shadow rounded-2xl cursor-pointer bg-card"
+                                    [routerLink]="['./details/', file.id]">
+                                <fuse-card class="flex flex-col md:flex-row max-w-80 md:max-w-160 w-full filter-listing">
+                                    <div class="flex-0 w-80 md:w-64">
+                                        <img
+                                            class="w-full h-full object-cover"
+                                            src="assets/images/cards/oui.jpg"
+                                            alt="Card cover image">
+                                    </div>
+                                    <div class="flex flex-col flex-auto m-8 mb-4">
+                                        <div class="text-2xl font-semibold leading-tight">{{file.name}}</div>
+                                        <div class="text-secondary">{{file.location}}</div>
+                                        <div class="flex items-center leading-none mt-2 -ml-1">
+                                            <div class="flex items-center">
+                                                <mat-icon
+                                                    class="text-orange-500 icon-size-5"
+                                                    [svgIcon]="'mat_outline:star'"></mat-icon>
+                                                <mat-icon
+                                                    class="text-orange-500 icon-size-5"
+                                                    [svgIcon]="'mat_outline:star'"></mat-icon>
+                                                <mat-icon
+                                                    class="text-orange-500 icon-size-5"
+                                                    [svgIcon]="'mat_outline:star'"></mat-icon>
+                                                <mat-icon
+                                                    class="text-orange-500 icon-size-5"
+                                                    [svgIcon]="'mat_outline:star'"></mat-icon>
+                                                <mat-icon
+                                                    class="text-orange-500 icon-size-5"
+                                                    [svgIcon]="'mat_outline:star_half'"></mat-icon>
+                                            </div>
+                                            <div class="text-secondary ml-2">4.5</div>
+                                            <div class="text-secondary mx-2">&bull;</div>
+                                            <div class="text-secondary">98 reviews</div>
+                                        </div>
+                                        <div class="mt-6">
+                                            {{file.description}}
+                                        </div>
+                                        <div class="flex items-center mt-3 -mx-3">
+                                            <a
+                                                class="px-3 mr-1"
+                                                mat-button
+                                                [color]="'primary'"
+                                                (click)="navigateToConfirm(file.id)"
+                                                >
+                                                Reserver
+                                            </a>
+                                            <a
+                                                class="px-3"
+                                                mat-button
+                                                [color]="'primary'"
+                                                [routerLink]="['./']">
+                                                Reviews
+                                            </a>
+                                        </div>
+                                    </div>
+                                </fuse-card> 
+                                
+                                </a>
+                                  </ng-container>
+                                </ng-container>
+                              </ng-container>
+                              <ng-template #loading>
+                                <div class="text-secondary">Chargement en cours...</div>
+                              </ng-template>
+                              <ng-template #noEvents>
+                                <div class="text-secondary">Aucun événement trouvé.</div>
+                              </ng-template>
+                           
+                            </div>
+                       
+
+                        <!-- Files -->
+                        
+                    </div>
+
+                <!-- No items template -->
+                <ng-template #noItems>
+                    <div class="flex flex-auto flex-col items-center justify-center bg-gray-100 dark:bg-transparent">
+                        <mat-icon
+                            class="icon-size-24"
+                            [svgIcon]="'heroicons_outline:folder-open'"></mat-icon>
+                        <div class="mt-4 text-2xl font-semibold tracking-tight text-secondary">There are no items!</div>
+                    </div>
+                </ng-template>
+
+            </div>
+
+        </mat-drawer-content>
+
+    </mat-drawer-container>
+
+</div>

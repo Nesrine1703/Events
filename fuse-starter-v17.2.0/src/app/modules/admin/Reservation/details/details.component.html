@@ -1,0 +1,415 @@
+<div class="flex flex-col flex-auto min-w-0">
+
+    <!-- Header -->
+    <div class="flex flex-col sm:flex-row flex-0 sm:items-center sm:justify-between p-6 sm:py-8 sm:px-10 border-b bg-card dark:bg-transparent">
+        <div class="flex-1 min-w-0">
+            <!-- Breadcrumbs -->
+            <div>
+                <div class="hidden sm:flex flex-wrap items-center font-medium">
+                    <div>
+                        <a class="whitespace-nowrap text-primary-500">Evenements {{item.name}}</a>
+                    </div>
+                    <div class="flex items-center ml-1 whitespace-nowrap">
+                        <mat-icon
+                            class="icon-size-5 text-secondary"
+                            [svgIcon]="'heroicons_solid:chevron-right'"></mat-icon>
+                        <span class="ml-1 text-secondary">Détails</span>
+                    </div>
+                </div>
+                <div class="flex sm:hidden">
+                    <a
+                        class="inline-flex items-center -ml-1.5 text-secondary font-medium"
+                        [routerLink]="'./..'">
+                        <mat-icon
+                            class="icon-size-5 text-secondary"
+                            [svgIcon]="'heroicons_solid:chevron-left'"></mat-icon>
+                        <span class="ml-1">Back</span>
+                    </a>
+                </div>
+            </div>
+            <!-- Title -->
+            <div class="mt-2">
+                <h2 class="text-3xl md:text-4xl font-extrabold tracking-tight leading-7 sm:leading-10 truncate">
+                    Details
+                </h2>
+            </div>
+        </div>
+        <!-- Actions -->
+        <div class="flex shrink-0 items-center mt-6 sm:mt-0 sm:ml-4">
+
+                        <!-- Close button -->
+                        <div class="flex items-center justify-end">
+                            <a
+                                mat-icon-button
+                                [routerLink]="['/file-manager']">
+                                <mat-icon [svgIcon]="'heroicons_outline:x'"></mat-icon>
+                            </a>
+                        </div>
+        </div>
+    </div>
+
+    <!-- Main -->
+    <div class="flex-auto pt-6 sm:px-4 sm:pb-4">
+
+        <!-- Tabs -->
+        <mat-tab-group class="section-class" #tabGroup [animationDuration]="'0'">
+
+            <!-- Tab #1 -->
+            <mat-tab label="Details">
+
+                <!-- TAB CONTENT GOES HERE -->
+                <div class="flex justify-center h-400 min-h-400 max-h-400 border-2 border-dashed border-gray-300 rounded-2xl">
+                    <div class="flex flex-col flex-auto p-6 md:p-8  ">
+
+                    
+                        <!-- Preview -->
+                        <div class="mt-8 aspect-[12/6]">
+                            <div class="flex items-center justify-center h-full border rounded-lg bg-gray-50 dark:bg-card">
+                                <ng-container *ngIf="item.type === 'folder'">
+                                    <mat-icon
+                                        class="icon-size-24 text-hint"
+                                        [svgIcon]="'heroicons_outline:folder'"></mat-icon>
+                                </ng-container>
+                                <ng-container *ngIf="item.type !== 'folder'">
+                                    <img
+                                    class="w-full h-full object-cover"
+                                    src="assets/images/cards/oui.jpg"
+                                    alt="Card cover image">
+                                </ng-container>
+                            </div>
+                        </div>
+                    
+                        <!-- Name & Type -->
+                        <div class="flex flex-col items-start mt-8">
+                            <div class="text-xl font-medium ">{{item.name}}</div>
+                            <!-- <div
+                                class="mt-1 px-1.5 rounded text-sm font-semibold leading-5 text-white"
+                                [class.bg-indigo-600]="item.type === 'folder'"
+                                [class.bg-red-600]="item.type === 'PDF'"
+                                [class.bg-blue-600]="item.type === 'DOC'"
+                                [class.bg-green-600]="item.type === 'XLS'"
+                                [class.bg-gray-600]="item.type === 'TXT'"
+                                [class.bg-amber-600]="item.type === 'JPG'">
+                                {{item.type.toUpperCase()}}
+                            </div> -->
+                        </div>
+                    
+                        <!-- Information -->
+                        <div class="text-lg font-medium mt-8">Information</div>
+                        <div class="flex flex-col mt-4 border-t border-b divide-y font-medium">
+                            <div class="flex items-center justify-between py-3">
+                                <div class="text-secondary">Event Date</div>
+                                <div>{{item.dateTime}}</div>
+                            </div>
+                            <div class="flex items-center justify-between py-3">
+                                <div class="text-secondary">Price</div>
+                                <div>{{item.price}}</div>
+                            </div>
+                            <div class="flex items-center justify-between py-3">
+                                <div class="text-secondary">Location</div>
+                                <div>{{item.location}}</div>
+                            </div>
+                            
+                            <ng-container *ngIf="item.contents">
+                                <div class="flex items-center justify-between py-3">
+                                    <div class="text-secondary">Contents</div>
+                                    <div>{{item.contents}}</div>
+                                </div>
+                            </ng-container>
+                        </div>
+                    
+                        <!-- Description -->
+                        <div class="flex items-center justify-between mt-8">
+                            <div class="text-lg font-medium">Description</div>
+                            <button mat-icon-button>
+                                <mat-icon
+                                    class="icon-size-5"
+                                    [svgIcon]="'heroicons_solid:pencil'"></mat-icon>
+                            </button>
+                        </div>
+                        <div class="flex mt-2 border-t">
+                            <div class="py-3">
+                                <ng-container *ngIf="item.description">
+                                    <div>{{item.description}}</div>
+                                </ng-container>
+                                <ng-container *ngIf="!item.description">
+                                    <div class="italic text-secondary">Click here to add a description</div>
+                                </ng-container>
+                            </div>
+                        </div>
+                    
+                        <!-- Actions -->
+                        <div class="grid grid-cols-2 gap-4 w-full mt-8">
+                            <button
+                            
+                                class="flex-auto"
+                                mat-stroked-button
+                                (click)="navigateToTab(tabGroup, 1)"
+                                >
+                                
+                              
+                                                        Commentaires
+                                                       
+                            </button>
+                            <button
+                                class="flex-auto"
+                                mat-stroked-button
+                                [routerLink]="['/file-manager']">
+                                Fermer
+                            </button>
+                        </div>
+                    
+                    </div>
+                    
+
+                </div>
+
+            </mat-tab>
+
+            <!-- Tab #2 -->
+            <mat-tab label="Commentaires">
+
+                <!-- TAB CONTENT GOES HERE -->
+                <div class=" justify-center h-400 min-h-400 max-h-400 border-2 border-dashed border-gray-300 rounded-2xl">
+
+                    <div >
+                        <fuse-card class="flex flex-col max-w-400 w-full mt-8 px-8 pt-6 pb-4">
+                            <div class="flex items-center justify-between">
+                                <div class="text-2xl font-semibold leading-tight">Activity Feed</div>
+                                <div class="-mr-3">
+                                    <button
+                                        mat-icon-button
+                                        [matMenuTriggerFor]="listCard04Menu">
+                                        <mat-icon
+                                            class="icon-size-5"
+                                            [svgIcon]="'heroicons_solid:dots-vertical'"></mat-icon>
+                                    </button>
+                                    <mat-menu #listCard04Menu="matMenu">
+                                        <button mat-menu-item>Clear activities</button>
+                                    </mat-menu>
+                                </div>
+                            </div>
+                            <div *ngIf="events$ | async as events; else loading">
+                                <div *ngIf="events && events.length > 0; else noEvents">
+                                    <div *ngFor="let comm of events">
+                                        <div *ngIf="comm.idEvent == item.id">
+                                            <div class="flex flex-col mt-5">
+                                                <div class="flex">
+                                                    <img
+                                                        class="w-10 h-10 mr-4 rounded-full"
+                                                        src="assets/images/avatars/female-01.jpg"
+                                                        alt="Card cover image">
+                                                    <div class="flex flex-col min-w-0">
+                                                        <div class="leading-tight">{{comm.commentaire}}</div>
+                                                        <div class="text-md leading-none text-secondary mt-2">{{commdatePublicationCommentaire}}</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <ng-template #loading>
+                                <div class="text-secondary">Chargement en cours...</div>
+                              </ng-template>
+                              <ng-template #noEvents>
+                                <div class="text-secondary">Aucun événement trouvé.</div>
+                              </ng-template>
+                              
+                        </fuse-card>
+                        <!--add -->
+                        <fuse-card class="flex flex-col max-w-400 w-full mt-8 px-8 pt-6 pb-4">
+                            <div class="flex flex-col sm:flex-row items-start mt-8">
+                                <div class="text-2xl font-semibold leading-tight">Add Commentaire</div>
+                                
+                                <mat-form-field
+                                    class="w-full"
+                                    [subscriptSizing]="'dynamic'">
+                                    <textarea
+                                        matInput
+                                        [placeholder]="'What\'s on your mind?'"
+                                        [rows]="3"
+                                        [(ngModel)]="textareaValue"
+                                        (input)="onTextareaChange($event)">
+                                        cdkTextareaAutosize></textarea>
+                                </mat-form-field>
+                                <button
+                                    class="px-8"
+                                    mat-flat-button
+                                    [color]="'primary'"
+                                    type="reset"
+                                    (click)="submit();">
+                                    Submit
+                                </button>
+                            </div>
+                        </fuse-card>
+                    </div>
+
+                   
+                </div>
+
+            </mat-tab>
+
+            <!-- Tab #3 -->
+            <mat-tab label="Reservation">
+
+                <!-- TAB CONTENT GOES HERE -->
+                <div class="flex justify-center h-400 min-h-400 max-h-400 border-2 border-dashed border-gray-300 rounded-2xl">
+                    <form
+                    class="p-4 bg-card shadow rounded overflow-hidden"
+                    [formGroup]="horizontalStepperForm">
+                    <mat-horizontal-stepper
+                        [linear]="true"
+                        #horizontalStepper>
+                        <mat-step
+                            [formGroupName]="'step1'"
+                            [stepControl]="horizontalStepperForm.get('step1')"
+                            #horizontalStepperStep1>
+                            <ng-template matStepLabel>Informations</ng-template>
+                            <p class="my-6 font-medium">
+                                Fill in your basic information to let us know your preferences
+                            </p>
+                            <div class="flex">
+                                <mat-form-field class="flex-auto">
+                                    <input
+                                        matInput
+                                        [formControlName]="'email'"
+                                        [placeholder]="'Email Address'"
+                                        required>
+                                    <mat-icon
+                                        class="icon-size-5"
+                                        matPrefix
+                                        [svgIcon]="'heroicons_solid:mail'"></mat-icon>
+                                </mat-form-field>
+                            </div>
+                            <div class="flex flex-col gt-xs:flex-row">
+                                <mat-form-field class="flex-auto gt-xs:pr-3">
+                                    <mat-select
+                                        [formControlName]="'country'"
+                                        [placeholder]="'Nombre de Tickets'"
+                                        required>
+                                        <mat-option *ngFor="let number of ticketNumbers" [value]="number">{{number}}</mat-option>
+                                    </mat-select>
+                                    <mat-icon
+                                        class="icon-size-5"
+                                        matPrefix
+                                        [svgIcon]="'format_list_numbered'"></mat-icon>
+                                </mat-form-field>
+                            </div>
+                            <div class="flex justify-end">
+                                <button
+                                    class="px-8"
+                                    mat-flat-button
+                                    [color]="'primary'"
+                                    [disabled]="horizontalStepperStep1.stepControl.pristine || horizontalStepperStep1.stepControl.invalid"
+                                    type="button"
+                                    matStepperNext>
+                                    Next
+                                </button>
+                            </div>
+                        </mat-step>
+    
+                        <mat-step
+                            [formGroupName]="'step2'"
+                            [stepControl]="horizontalStepperForm.get('step2')"
+                            #horizontalStepperStep2>
+                            <ng-template matStepLabel>Paiement</ng-template>
+                            <p class="my-6 font-medium">
+                                People here will get to know you with this information
+                            </p>
+                            <div class="flex">
+                                <mat-radio-group [formControlName]="'paymentMethod'">
+                                    <mat-radio-button value="online">Pay Online</mat-radio-button>
+                                    <mat-radio-button value="offline">Pay On-Site</mat-radio-button>
+                                </mat-radio-group>
+                            </div>
+                            <div class="flex justify-end">
+                                <button
+                                    class="px-8 mr-2"
+                                    mat-flat-button
+                                    [color]="'accent'"
+                                    type="button"
+                                    matStepperPrevious>
+                                    Back
+                                </button>
+                                <button
+                                    class="px-8"
+                                    mat-flat-button
+                                    [color]="'primary'"
+                                    [disabled]="horizontalStepperStep2.stepControl.pristine || horizontalStepperStep2.stepControl.invalid"
+                                    type="button"
+                                    matStepperNext>
+                                    Next
+                                </button>
+                            </div>
+                        </mat-step>
+    
+
+    
+                        <mat-step>
+                            <ng-template matStepLabel>Done</ng-template>
+                            <p class="my-6 font-medium">
+                                Thank you for completing our form! You can reset the form if you would like to change your information.
+                            </p>
+                            <div class="flex justify-end mt-8">
+                                <button
+                                    class="px-8 mr-2"
+                                    mat-flat-button
+                                    [color]="'accent'"
+                                    type="button"
+                                    matStepperPrevious>
+                                    Back
+                                </button>
+                                <button
+                                    class="px-8"
+                                    mat-flat-button
+                                    [color]="'primary'"
+                                    type="reset"
+                                    (click)="submitForm();">
+                                    Submit
+                                </button>
+                            </div>
+                        </mat-step>
+                    </mat-horizontal-stepper>
+                    <div *ngIf="afficher" class=" inset-0 min-w-0 text-center print:overflow-visible" cdkScrollable>
+
+                    <!-- Main -->
+                        <div class="inline-block p-6 sm:p-10 text-left print:p-0">
+
+                            <!-- Invoice -->
+                            <div class="w-140 min-w-140 p-16 rounded-2xl shadow bg-card print:w-auto print:p-0 print:rounded-none print:shadow-none print:bg-transparent">
+
+                                <div class="flex items-start">
+                                    <div class="grid grid-rows-1 place-items-start gap-y-12">
+                                        <div class="grid auto-cols-max grid-flow-col gap-x-8">
+                                            <div class="place-self-center w-40">
+                                                <img
+                                                    class="w-40"
+                                                    src="assets/images/cards/oui.jpg">
+                                            </div>
+                                            <div class="pl-10 border-l text-md">
+                                                <div class="font-medium">Email: {{ reservationAdded.email }}</div>
+                                                <div class="font-medium">Event Date: {{ item.dateTime }}</div>
+                                                <div class="font-medium">Number Of Tickets: {{ reservationAdded.numberOfTickets }}</div>
+                                                <div class="font-medium">Price: {{ item.price }}</div>
+                                                <div class="font-medium">Reservation Date: {{ reservationAdded.reservationDate }}</div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+                
+                </div>
+                
+                
+            </mat-tab>
+        </mat-tab-group>
+
+    </div>
+
+</div>

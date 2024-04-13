@@ -72,6 +72,8 @@ export const appRoutes: Route[] = [
         },
         children: [
             {path: 'example', loadChildren: () => import('app/modules/admin/example/example.module').then(m => m.ExampleModule)},
+            {path: 'file-manager', loadChildren: () => import('app/modules/admin/Reservation/file-manager.module').then(m => m.FileManagerModule)}
+
         ]
     }
 ];
